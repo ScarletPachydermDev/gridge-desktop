@@ -43,6 +43,7 @@ STREAMING_SERVICES = {
     "tubi": ("tubitv.com", "Tubi", None),
     "pluto tv": ("pluto.tv", "Pluto TV", None),
     "crackle": ("crackle.com", "Crackle", None),
+    "stremio": ("web.stremio.com", "Stremio", None),
     "vudu": ("fandangoathome.com", "Fandango At Home", None),  # verify: Vudu rebranded to Fandango At Home in 2024
     "fandango at home": ("fandangoathome.com", "Fandango At Home", None),
     "pbs": ("pbs.org", "PBS", None),

@@ -78,10 +78,26 @@ def _get(path, params=None):
     return data["data"]
 
 
+_STRIP_NAME_SUFFIXES = (" (Program)",)
+
+
+def _clean_sgdb_name(name):
+    """Strips SGDB's own category-tag suffixes that shouldn't end up in
+    a Steam shortcut's actual name -- confirmed live e.g. "Stremio
+    (Program)". Deliberately narrow (just "(Program)" for now, not
+    every parenthetical): tags like "(Website)" are a genuinely useful
+    disambiguator when multiple same-named entries exist, so only the
+    ones known to be noise get stripped."""
+    for suffix in _STRIP_NAME_SUFFIXES:
+        if name.endswith(suffix):
+            return name[: -len(suffix)]
+    return name
+
+
 def search(term):
     """Return list of {id, name, verified} candidate matches for a query."""
     results = _get(f"/search/autocomplete/{urllib.parse.quote(term)}")
-    return [{"id": r["id"], "name": r["name"], "verified": r.get("verified", False)} for r in results]
+    return [{"id": r["id"], "name": _clean_sgdb_name(r["name"]), "verified": r.get("verified", False)} for r in results]
 
 
 def get_game(game_id):
@@ -89,7 +105,7 @@ def get_game(game_id):
     autocomplete -- used for entries confirmed to return unreliable
     autocomplete matches (e.g. Disney+)."""
     data = _get(f"/games/id/{game_id}")
-    return {"id": data["id"], "name": data["name"], "verified": data.get("verified", False)}
+    return {"id": data["id"], "name": _clean_sgdb_name(data["name"]), "verified": data.get("verified", False)}
 
 
 def get_vertical_grid(game_id):
