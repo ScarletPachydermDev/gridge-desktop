@@ -51,16 +51,8 @@ Edge shares one profile across every shortcut Gridge creates, so logins, addons 
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak remote-add --user --if-not-exists gridge https://raw.githubusercontent.com/ScarletPachydermDev/Gridge/main/packaging/io.github.ScarletPachydermDev.Gridge.flatpakrepo && flatpak install --user gridge io.github.ScarletPachydermDev.Gridge
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > Flathub repo is included for Gnome runtime
-
-From then on `flatpak update` (or your desktop's automatic background updates, on by default on SteamOS and most GNOME/KDE-based distros) picks up new releases the same way a Flathub app would -- no manual reinstalling.
-
-The `.flatpak` bundle on the [releases page](https://github.com/ScarletPachydermDev/Gridge/releases/latest) also auto-registers the same repo (with its GPG key) on install, and falls back to Flathub for the GNOME runtime if it isn't already available -- so it updates and installs just as reliably as the command above.
-
-### Why not Flathub?
-
-Gridge was submitted to Flathub, but rejected: the project is too new ([insufficient development history](https://docs.flathub.org/docs/for-app-authors/requirements#insufficient-development-history)) and built with heavy AI assistance ([generative AI policy](https://docs.flathub.org/docs/for-app-authors/requirements#generative-ai-policy)). Both are legitimate policies, and Gridge genuinely doesn't meet them yet -- may try again once that's no longer true.
 
 ## Building from source
 
